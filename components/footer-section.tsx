@@ -2,7 +2,7 @@
 
 import type { LucideIcon } from "lucide-react"
 import { motion } from "framer-motion"
-import { Twitter, Instagram, Twitch, Linkedin, Github } from "lucide-react"
+import { Twitter, Instagram, Twitch, Linkedin, Github, Youtube } from "lucide-react"
 
 type Social = {
   label: string
@@ -11,10 +11,12 @@ type Social = {
 }
 
 const socials: Social[] = [
+  { label: "YouTube (Gaming)", href: "https://www.youtube.com/@pinecoxz", icon: Youtube },
+  { label: "YouTube (Other)", href: "https://www.youtube.com/@hechos786", icon: Youtube },
+  { label: "GitHub", href: "https://github.com/PinecoXZ", icon: Github },
   { label: "Twitter / X", href: "https://x.com/fayez_ahmad499", icon: Twitter },
   { label: "Instagram", href: "https://www.instagram.com/_fayez_087/?hl=en", icon: Instagram },
-  { label: "GitHub", href: "https://github.com/FAYEZ087", icon: Github },
-  { label: "Twitch", href: "https://www.twitch.tv/madamxunite", icon: Twitch },
+  { label: "Twitch", href: "https://www.twitch.tv/madmaxunite", icon: Twitch },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/fayez-ahmad-624619333/", icon: Linkedin },
 ]
 
@@ -22,12 +24,11 @@ export function FooterSection() {
   return (
     <motion.footer
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-      className="mt-4 flex flex-col items-center gap-4"
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="mt-4 flex flex-col items-center gap-3.5 pb-6"
     >
-      <ul className="flex items-center gap-2">
+      <ul className="flex items-center gap-2" aria-label="Social profiles">
         {socials.map((social) => {
           const Icon = social.icon
           return (
@@ -37,24 +38,17 @@ export function FooterSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="group flex h-10 w-10 items-center justify-center rounded-xl border border-border/60 bg-card/40 text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:text-primary"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow =
-                    "0 0 18px oklch(0.7 0.25 305 / 0.35)"
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = ""
-                }}
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-muted-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-white/[0.08] hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                <Icon className="h-4 w-4" aria-hidden="true" />
               </a>
             </li>
           )
         })}
       </ul>
 
-      <p className="text-center font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground/70">
-        © {new Date().getFullYear()} Fayez Ahmad · Built with code & caffeine
+      <p className="text-center font-mono text-[11px] text-muted-foreground/60">
+        © {new Date().getFullYear()} Fayez Ahmad
       </p>
     </motion.footer>
   )
